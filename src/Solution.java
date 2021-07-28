@@ -164,14 +164,6 @@ public class Solution {
     //endregion
 
     //region 21. Merge Two Sorted Lists
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
-
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
         if (l1 == null && l2 == null) {
@@ -491,17 +483,106 @@ public class Solution {
     private HashMap<Integer, Integer> hashMap = new HashMap<>();
     public int climbStairs(int n) {
 
-        if (n==1) {return 1;}
-        else if (n==2) {return 2;}
-        else if (hashMap.containsKey(n)) {
-            return hashMap.get(n);
+//        if (n==1) {return 1;}
+//        else if (n==2) {return 2;}
+//        else if (hashMap.containsKey(n)) {
+//            return hashMap.get(n);
+//        }
+//        else {
+//            int tmp = climbStairs(n-1) + climbStairs(n-2);
+//            hashMap.put(n, tmp);
+//            return tmp;
+//        }
+
+        hashMap.put(1, 1);
+        hashMap.put(2, 2);
+
+        int res = 0;
+        for (int i = 3; i <= n; i++) {
+            int tmp = hashMap.get(i-1) + hashMap.get(i-2);
+            hashMap.put(i, tmp);
         }
-        else {
-            int tmp = climbStairs(n-1) + climbStairs(n-2);
-            hashMap.put(n, tmp);
-            return tmp;
-        }
+
+        return hashMap.get(n);
+
     }
     //endregion
 
+    //region 83. Remove Duplicates from Sorted List
+    public ListNode deleteDuplicates(ListNode head) {
+
+        if (head == null) {
+            return head;
+        }
+
+        Set<Integer> set = new HashSet<>();
+
+        ListNode lastNode = null;
+        ListNode newHead = head;
+        while (newHead.next != null) {
+
+            if (set.contains(newHead.val)) {
+                lastNode.next = newHead.next;
+            } else {
+                lastNode = newHead;
+                set.add(newHead.val);
+            }
+
+            newHead = newHead.next;
+
+        }
+
+        if (lastNode!= null && set.contains(newHead.val)) {
+            lastNode.next = null;
+        }
+
+        return head;
+
+    }
+    //endregion
+
+    //region 88. Merge Sorted Array
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+
+        if (nums1.length == 0) {
+            return;
+        }
+
+        int nn = n - 1;
+        int mm = m - 1;
+        for (int i = nums1.length-1; i >= 0; i--) {
+
+            if (nn < 0 && mm >= 0) {
+                nums1[i] = nums1[mm];
+                mm--;
+                continue;
+            }
+
+            if (mm < 0 && nn >= 0) {
+                nums1[i] = nums2[nn];
+                nn--;
+                continue;
+            }
+
+            if (nums1[mm] > nums2[nn]) {
+                nums1[i] = nums1[mm];
+                mm--;
+            } else {
+                nums1[i] = nums2[nn];
+                nn--;
+            }
+
+        }
+
+    }
+    //endregion
+
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
