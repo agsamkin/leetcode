@@ -577,6 +577,87 @@ public class Solution {
     }
     //endregion
 
+    //region 94. Binary Tree Inorder Traversal
+    public List<Integer> inorderTraversal(TreeNode root) {
+
+        List<Integer> res = new ArrayList<>();
+
+        if (root == null) { return res; }
+
+        res.addAll(inorderTraversal(root.left));
+        res.add(root.val);
+        res.addAll(inorderTraversal(root.right));
+
+        return res;
+
+    }
+    //endregion
+
+    //region 100. Same Tree
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+
+        boolean res = false;
+
+        if (p == null & q == null) {
+            return true;
+        }
+
+        if (p != null && q != null) {
+
+            if (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)) {
+                res = true;
+            }
+
+        }
+
+        return res;
+
+    }
+    //endregion
+
+    //region 101. Symmetric Tree
+    public boolean isSymmetric(TreeNode root) {
+
+        boolean res = true;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            TreeNode left = queue.poll();
+            TreeNode right = queue.poll();
+
+            if (left == null && right == null) {
+                continue;
+            }
+
+            if (left == null || right == null) {
+                res = false;
+                break;
+            }
+
+            if (left.val != right.val) {
+                res = false;
+                break;
+            }
+
+            queue.add(left.left);
+            queue.add(right.right);
+
+            queue.add(left.right);
+            queue.add(right.left);
+
+        }
+
+        return res;
+
+    }
+
+
+    //endregion
+
 }
 
 class ListNode {
@@ -585,4 +666,17 @@ class ListNode {
     ListNode() {}
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
 }
