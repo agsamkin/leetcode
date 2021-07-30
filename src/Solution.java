@@ -654,10 +654,64 @@ public class Solution {
         return res;
 
     }
-
-
     //endregion
 
+    //region 104. Maximum Depth of Binary Tree
+    public int maxDepth(TreeNode root) {
+
+        int res = 0;
+
+        if (root == null) {
+            return res;
+        }
+
+        res++;
+        res = res + Math.max(maxDepth(root.left), maxDepth(root.right));
+
+        return res;
+
+    }
+    //endregion
+
+    //region 108. Convert Sorted Array to Binary Search Tree
+    public TreeNode sortedArrayToBST(int[] nums) {
+
+        if (nums.length == 0) {return null;}
+
+        int mid = nums.length/2;
+        int[] l = Arrays.copyOfRange(nums, 0, mid);
+        int[] r = Arrays.copyOfRange(nums, mid+1, nums.length);
+        TreeNode root = new TreeNode(nums[mid], sortedArrayToBST(l), sortedArrayToBST(r));
+
+        return root;
+
+    }
+    //endregion
+
+    //region 110. Balanced Binary Tree
+    public boolean isBalanced(TreeNode root) {
+
+        boolean res = false;
+
+        if (root == null) {return true;}
+
+        int l = maxDepth(root.left);
+        int r = maxDepth(root.right);
+
+        if (l>r) {
+            res = (l-r) <= 1;
+        } else {
+            res = (r-l) <= 1;
+        }
+
+        if(res && isBalanced(root.left) && isBalanced(root.right)) {
+            res = true;
+        } else {res = false;}
+
+        return res;
+
+    }
+    //endregion
 }
 
 class ListNode {
