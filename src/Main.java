@@ -11,20 +11,17 @@ public class Main {
 
         Solution solution = new Solution();
 
-        // [1,2,2,3,null,null,3,4,null,null,4]
+        //root = [3,9,20,null,null,15,7]
 
-        TreeNode r5 = new TreeNode(4);
-        TreeNode r3 = new TreeNode(3, null, r5);
+//        TreeNode r2 = new TreeNode(7);
+//        TreeNode l2 = new TreeNode(15);
+//
+//        TreeNode r1 = new TreeNode(20, l2, r2);
+        TreeNode l1 = new TreeNode(2);
 
-        TreeNode l4 = new TreeNode(4);
-        TreeNode l2 = new TreeNode(3, l4, null);
+        TreeNode root = new TreeNode(1, l1, null);
 
-        TreeNode r1 = new TreeNode(2, null, r3);
-        TreeNode l1 = new TreeNode(2, l2, null);
-
-        TreeNode root = new TreeNode(1, l1, r1);
-
-        System.out.println(solution.isBalanced(root));
+        System.out.println(solution.hasPathSum(root, 3));
 
     }
 

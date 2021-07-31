@@ -1,5 +1,6 @@
 import java.beans.IntrospectionException;
 import java.util.*;
+import java.util.concurrent.RecursiveTask;
 
 public class Solution {
 
@@ -712,6 +713,51 @@ public class Solution {
 
     }
     //endregion
+
+    //region 111. Minimum Depth of Binary Tree
+    public int minDepth(TreeNode root) {
+
+        int res = 0;
+
+        if (root == null) {
+            return res;
+        }
+
+        res++;
+
+        if(root.left == null || root.right == null) {
+            if(root.left == null) {
+                res = res + minDepth(root.right);
+            } else {
+                res = res + minDepth(root.left);
+            }
+        } else {
+            res = res + Math.min(minDepth(root.left), minDepth(root.right));
+        }
+
+        return res;
+
+    }
+    //endregion
+
+    //region 112. Path Sum
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+
+        if (root == null) {
+            return false;
+        }
+
+        targetSum = targetSum - root.val;
+
+        if (targetSum == 0 && root.left == null && root.right == null) {
+            return true;
+        } else {
+            return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
+        }
+        
+    }
+    //endregion
+
 }
 
 class ListNode {
