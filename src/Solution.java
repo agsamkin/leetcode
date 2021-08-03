@@ -758,6 +758,101 @@ public class Solution {
     }
     //endregion
 
+    //region 118. Pascal's Triangle
+    public List<List<Integer>> generate(int numRows) {
+
+        List rows = new LinkedList();
+        List<Integer> lastRow = new LinkedList<>();
+
+        for (int i = 0; i < numRows; i++) {
+
+            List<Integer> row = new LinkedList<>();
+
+            for (int j = 0; j < i; j++) {
+                int tmp = 1;
+                if (j > 0) {
+                    tmp = lastRow.get(j-1) + lastRow.get(j);
+                }
+                row.add(tmp);
+            }
+            row.add(1);
+            rows.add(row);
+            lastRow = row;
+
+        }
+
+        return rows;
+
+    }
+    //endregion
+
+    //region 119. Pascal's Triangle II
+    public List<Integer> getRow(int rowIndex) {
+
+        List<Integer> lastRow = new LinkedList<>();
+
+        for (int i = 0; i < rowIndex; i++) {
+
+            List<Integer> row = new LinkedList<>();
+
+            for (int j = 0; j < i; j++) {
+                int tmp = 1;
+                if (j > 0) {
+                    tmp = lastRow.get(j-1) + lastRow.get(j);
+                }
+                row.add(tmp);
+            }
+            row.add(1);
+            lastRow = row;
+
+        }
+
+        return lastRow;
+
+    }
+    //endregion
+
+    //region 121. Best Time to Buy and Sell Stock
+    public int maxProfit(int[] prices) {
+
+        int min = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            int tmp = prices[i];
+            if (tmp > min) {
+                maxProfit = Math.max(maxProfit, (tmp-min));
+            } else {
+                min = tmp;
+            }
+
+        }
+
+        return maxProfit;
+
+    }
+    //endregion
+
+    //region 122. Best Time to Buy and Sell Stock II
+    public int maxProfit2(int[] prices) {
+
+        int min = prices[0];
+        int maxProfit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+
+            int tmp = prices[i];
+            if (tmp > min) {
+                maxProfit = maxProfit + (tmp-min);
+            }
+            min = tmp;
+
+        }
+
+        return maxProfit;
+
+    }
+    //endregion
+
 }
 
 class ListNode {
