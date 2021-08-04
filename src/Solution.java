@@ -853,6 +853,37 @@ public class Solution {
     }
     //endregion
 
+    //region 125. Valid Palindrome
+    public boolean isPalindrome(String s) {
+
+        boolean res = true;
+
+        s = s.replaceAll("[^a-zA-ZА-Яа-я0-9\\s]", "").replace(" ", "").toLowerCase();
+
+        int mid = s.length()/2;
+        char[] arr = s.toCharArray();
+        for (int i = 0; i < mid; i++) {
+            if (arr[i] != arr[arr.length-i-1]) {
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+
+    }
+    //endregion
+
+    //region 136. Single Number
+    public int singleNumber(int[] nums) {
+        int a = 0;
+        for (int i : nums) {
+            a ^= i;
+        }
+        return a;
+    }
+    //endregion
+
 }
 
 class ListNode {

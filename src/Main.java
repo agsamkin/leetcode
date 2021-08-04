@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Solution solution = new Solution();
-        System.out.println(solution.maxProfit2(new int[]{7,6,4,3,1}));
+        System.out.println(solution.singleNumber(new int[]{4,1,2,1,2}));
 
     }
 
