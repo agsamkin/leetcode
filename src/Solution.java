@@ -884,6 +884,65 @@ public class Solution {
     }
     //endregion
 
+    //region 141. Linked List Cycle
+    public boolean hasCycle(ListNode head) {
+
+        if (head == null) {
+            return false;
+        }
+
+        Set<ListNode> set = new HashSet<>();
+        set.add(head);
+        while (head.next != null) {
+            ListNode currentNode = head.next;
+            if (set.contains(currentNode)) {
+                return true;
+            }
+            set.add(head);
+            head = head.next;
+        }
+
+        return false;
+
+    }
+    //endregion
+
+    //region 144. Binary Tree Preorder Traversal
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        if (root == null) {
+            return list;
+        }
+
+        list.add(root.val);
+        list.addAll(preorderTraversal(root.left));
+        list.addAll(preorderTraversal(root.right));
+
+        return list;
+
+    }
+    //endregion
+
+    //region 145. Binary Tree Postorder Traversal
+    public List<Integer> postorderTraversal(TreeNode root) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        if (root == null) {
+            return list;
+        }
+
+        list.addAll(postorderTraversal(root.left));
+        list.addAll(postorderTraversal(root.right));
+        list.add(root.val);
+
+        return list;
+
+    }
+    //endregion
+
 }
 
 class ListNode {
