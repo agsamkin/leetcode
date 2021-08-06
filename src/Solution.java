@@ -943,6 +943,98 @@ public class Solution {
     }
     //endregion
 
+    //region 160. Intersection of Two Linked Lists
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+//        if (headA == null || headB == null) {
+//            return null;
+//        }
+//
+//        Set<ListNode> set = new HashSet<>();
+//        set.add(headA);
+//
+//        while (headA.next != null) {
+//            set.add(headA.next);
+//            headA = headA.next;
+//        }
+//
+//        if (set.contains(headB)) {
+//            return headB;
+//        }
+//
+//        set.add(headB);
+//        while (headB.next != null) {
+//            if (set.contains(headB.next)) {
+//                return headB.next;
+//            }
+//            set.add(headB.next);
+//            headB = headB.next;
+//        }
+
+//        return null;
+
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        ListNode a = headA;
+        ListNode b = headB;
+
+        while (a != b) {
+
+            if (a == null) {
+                a = headB;
+            } else {
+                a = a.next;
+            }
+
+            if (b == null) {
+                b = headA;
+            } else {
+                b = b.next;
+            }
+
+        }
+
+        return b;
+    }
+    //endregion
+
+    //region 167. Two Sum II - Input array is sorted
+    public int[] twoSum2(int[] numbers, int target) {
+
+        int[] res = new int[2];
+
+        if (numbers.length < 1) {
+            return res;
+        }
+
+        int left = 0;
+        int right = numbers.length-1;
+
+        while (left<right) {
+
+            int tmp = numbers[left] + numbers[right];
+
+            if (tmp == target) {
+                res[0] = left+1;
+                res[1] = right+1;
+                return res;
+            }
+
+            if (tmp > target) {
+                right--;
+            } else {
+                left++;
+            }
+
+        }
+
+        return res;
+
+    }
+    //endregion
+
 }
 
 class ListNode {

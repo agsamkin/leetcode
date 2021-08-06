@@ -10,31 +10,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Solution solution = new Solution();
-//
-//        //[3,2,0,-4]
-//        ListNode listNode4 = new ListNode(-4);
-//        ListNode listNode3 = new ListNode(0, listNode4);
-//        ListNode listNode2 = new ListNode(2, listNode3);
-//        ListNode listNode1 = new ListNode(3, listNode2);
-//
-//        listNode4.next = listNode2;
-//
-//        System.out.println(solution.hasCycle(listNode1));
+        Solution solution = new Solution();
 
-        MinStack minStack = new MinStack();
-        minStack.push(2);
-        minStack.push(0);
-        minStack.push(3);
-        minStack.push(0);
+//        ListNode listNode3_1 = new ListNode(3);
+//        ListNode listNode2_1 = new ListNode(2, listNode3_1);
+//        ListNode listNode1_1 = new ListNode(1, listNode2_1);
+//
+//        ListNode listNode2_2 = new ListNode(5);
+//        ListNode listNode1_2 = new ListNode(4, listNode2_2);
+//
+//        ListNode res = solution.getIntersectionNode(listNode1_1, listNode1_2);
 
-        System.out.println(minStack.getMin());
-        minStack.pop();
-        System.out.println(minStack.getMin());
-        minStack.pop();
-        System.out.println(minStack.getMin());
-        minStack.pop();
-        System.out.println(minStack.getMin());
+        System.out.println(Arrays.toString(solution.twoSum2(new int[]{2,7,11,15}, 9)));
+
+//        800/26 = 30;
+//        30/26 = 1;A
+//        30%26 = 4;D
+//        800%26 = 20;T
+
 
     }
 
