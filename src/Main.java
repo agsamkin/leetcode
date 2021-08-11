@@ -21,7 +21,7 @@ public class Main {
 //
 //        ListNode res = solution.getIntersectionNode(listNode1_1, listNode1_2);
 
-        System.out.println(Arrays.toString(solution.twoSum2(new int[]{2,7,11,15}, 9)));
+        System.out.println(solution.trailingZeroes(24));
 
 //        800/26 = 30;
 //        30/26 = 1;A

@@ -1035,6 +1035,155 @@ public class Solution {
     }
     //endregion
 
+    //region 168. Excel Sheet Column Title
+    public String convertToTitle(int columnNumber) {
+
+        HashMap<Integer, String> hashMap = new HashMap<>();
+        hashMap.put(1, "A");
+        hashMap.put(2, "B");
+        hashMap.put(3, "C");
+        hashMap.put(4, "D");
+        hashMap.put(5, "E");
+        hashMap.put(6, "F");
+        hashMap.put(7, "G");
+        hashMap.put(8, "H");
+        hashMap.put(9, "I");
+        hashMap.put(10, "J");
+        hashMap.put(11, "K");
+        hashMap.put(12, "L");
+        hashMap.put(13, "M");
+        hashMap.put(14, "N");
+        hashMap.put(15, "O");
+        hashMap.put(16, "P");
+        hashMap.put(17, "Q");
+        hashMap.put(18, "R");
+        hashMap.put(19, "S");
+        hashMap.put(20, "T");
+        hashMap.put(21, "U");
+        hashMap.put(22, "V");
+        hashMap.put(23, "W");
+        hashMap.put(24, "X");
+        hashMap.put(25, "Y");
+        hashMap.put(26, "Z");
+
+        String res = "";
+
+        if (columnNumber <= 26) {
+            return hashMap.get(columnNumber);
+        }
+
+        int tmp1 = (columnNumber-1)/26;
+
+        if (tmp1 > 0 && tmp1 <= 26) {
+            res = res + hashMap.get(tmp1);
+        } else {
+            res = res + convertToTitle(tmp1);
+        }
+
+        columnNumber = columnNumber - tmp1*26;
+
+        if (columnNumber > 0) {
+            res = res + hashMap.get(columnNumber);
+        }
+
+        return res;
+
+    }
+    //endregion
+
+    //region 169. Majority Element
+    public int majorityElement(int[] nums) {
+
+        int res = 0;
+        int n = nums.length%2 == 0 ? nums.length/2 : nums.length/2 + 1;
+
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (hashMap.containsKey(nums[i])) {
+                hashMap.put(nums[i], hashMap.get(nums[i])+1);
+            } else {
+                hashMap.put(nums[i], 1);
+            }
+        }
+
+        Iterator iter = (Iterator) hashMap.entrySet().iterator();
+
+        while (iter.hasNext()) {
+            Map.Entry pair = (Map.Entry)iter.next();
+            if ((int) pair.getValue() >= n) {
+                res = (int) pair.getKey();
+                break;
+            }
+
+        }
+        
+        return res;
+
+    }
+    //endregion
+
+    //region 171. Excel Sheet Column Number
+    public int titleToNumber(String columnTitle) {
+
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        hashMap.put('A', 1);
+        hashMap.put('B', 2);
+        hashMap.put('C', 3);
+        hashMap.put('D', 4);
+        hashMap.put('E', 5);
+        hashMap.put('F', 6);
+        hashMap.put('G', 7);
+        hashMap.put('H', 8);
+        hashMap.put('I', 9);
+        hashMap.put('J', 10);
+        hashMap.put('K', 11);
+        hashMap.put('L', 12);
+        hashMap.put('M', 13);
+        hashMap.put('N', 14);
+        hashMap.put('O', 15);
+        hashMap.put('P', 16);
+        hashMap.put('Q', 17);
+        hashMap.put('R', 18);
+        hashMap.put('S', 19);
+        hashMap.put('T', 20);
+        hashMap.put('U', 21);
+        hashMap.put('V', 22);
+        hashMap.put('W', 23);
+        hashMap.put('X', 24);
+        hashMap.put('Y', 25);
+        hashMap.put('Z', 26);
+
+        char[] arr = columnTitle.toCharArray();
+
+        int res = 0;
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
+            if (i == (arr.length-1)) {
+                res = res + hashMap.get(c);
+            } else {
+                res = (res + hashMap.get(c))*26;
+            }
+        }
+
+        return res;
+
+    }
+    //endregion
+
+    //region 172. Factorial Trailing Zeroes
+    public int trailingZeroes(int n) {
+
+        int res = 0;
+        while (n>0) {
+            n = n / 5;
+            res = res + n;
+        }
+
+        return res;
+
+    }
+    //endregion
+
 }
 
 class ListNode {
