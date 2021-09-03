@@ -1184,6 +1184,42 @@ public class Solution {
     }
     //endregion
 
+    //region 190. Reverse Bits
+    public int reverseBits(int n) {
+
+        String s1 = Integer.toBinaryString(n);
+        String s2 = new StringBuffer(s1).reverse().toString();
+        return 0;
+
+    }
+    //endregion
+
+    //region 202. Happy Number
+    Set<Integer> set = new HashSet<>();
+    public boolean isHappy(int n) {
+
+        char[] arr = Integer.toString(n).toCharArray();
+        int res = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int tmp = Integer.parseInt(Character.toString(arr[i]));
+            res = res + tmp*tmp;
+        }
+
+        if (res == 1) {
+            return true;
+        }
+
+        if (set.contains(res)) {
+            return false;
+        }
+
+        set.add(res);
+        return isHappy(res);
+
+    }
+
+    //endregion
+
 }
 
 class ListNode {
