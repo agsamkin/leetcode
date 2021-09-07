@@ -9,9 +9,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-
         Solution solution = new Solution();
-        System.out.println(solution.isHappy(19));
+        boolean res = solution.isIsomorphic("abcdefghijklmnopqrstuvwxyzva", "abcdefghijklmnopqrstuvwxyzck");
+        System.out.println(res);
 
     }
 

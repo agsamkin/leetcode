@@ -1,4 +1,6 @@
+import javax.sound.midi.Soundbank;
 import java.beans.IntrospectionException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.RecursiveTask;
 
@@ -1216,6 +1218,84 @@ public class Solution {
         set.add(res);
         return isHappy(res);
 
+    }
+    //endregion
+
+    //region 203. Remove Linked List Elements
+    public ListNode removeElements(ListNode head, int val) {
+
+        ListNode res = null;
+
+        if (head == null) {
+            return res;
+        }
+
+        ListNode oldHead = null;
+
+        while (head != null) {
+            if (head.val == val && oldHead != null) {
+                oldHead.next = head.next;
+            }
+            if (head.val != val) {
+                oldHead = head;
+            }
+            if (head.val != val && res == null) {
+                res = head;
+            }
+            head = head.next;
+        }
+
+        return res;
+
+    }
+    //endregion
+
+    //region 204. Count Primes
+    public int countPrimes(int n) {
+
+        boolean[] notPrimes = new boolean [n];
+        if (n <= 2) return 0;
+
+        int count = 1; //initializing that 2 is prime
+
+        for (int i = 3; i < n; i += 2) { //skipping all even numbers
+            if (!notPrimes[i]) {
+                count++;
+
+                for (int j = 1; j*i < n; j++) { //all multiples of the prime number are not primes
+                    notPrimes[j*i] = true;
+                }
+            }
+        }
+
+        return count;
+
+    }
+    //endregion
+
+    //region 205. Isomorphic Strings
+    public boolean isIsomorphic(String s, String t) {
+        return transformString(s).equals(transformString(t));
+    }
+
+    private String transformString(String s) {
+
+        Map<Character, Integer> indexMapping = new HashMap<>();
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < s.length(); ++i) {
+            char c1 = s.charAt(i);
+
+            if (!indexMapping.containsKey(c1)) {
+                indexMapping.put(c1, i);
+            }
+
+            builder.append(Integer.toString(indexMapping.get(c1)));
+            builder.append("_");
+        }
+        String tmp = builder.toString();
+        //System.out.println(tmp);
+        return tmp;
     }
 
     //endregion
