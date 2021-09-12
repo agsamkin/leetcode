@@ -1300,7 +1300,121 @@ public class Solution {
 
     //endregion
 
+    //region 206. Reverse Linked List
+    public ListNode reverseList(ListNode head) {
+
+        ListNode tmp = null;
+        ListNode newHead = null;
+
+        while (head != null) {
+
+            newHead = new ListNode(head.val);
+            newHead.next = tmp;
+
+            head = head.next;
+
+            tmp = newHead;
+
+        }
+
+        return newHead;
+    }
+    //endregion
+
+    //region 217. Contains Duplicate
+    public boolean containsDuplicate(int[] nums) {
+
+        if (nums.length <= 1) {
+            return false;
+        }
+
+        Arrays.sort(nums);
+        int tmp = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (tmp == nums[i]) {
+                return true;
+            }
+            tmp = nums[i];
+        }
+
+        return false;
+    }
+    //endregion
+
+    //region 219. Contains Duplicate II
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (hashMap.containsKey(nums[i])) {
+                int tmp = i - hashMap.get(nums[i]);
+                if (tmp <= k) {
+                    return true;
+                }
+            }
+
+            hashMap.put(nums[i], i);
+
+        }
+
+        return false;
+
+    }
+    //endregion
+
+    //region 226. Invert Binary Tree
+    public TreeNode invertTree(TreeNode root) {
+
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        invertTree(root.left);
+        invertTree(root.right);
+
+        return root;
+
+    }
+    //endregion
+
 }
+
+class MyStack {
+
+    private ArrayDeque<Integer> queue;
+
+    /** Initialize your data structure here. */
+    public MyStack() {
+        queue = new ArrayDeque<>();
+    }
+
+    /** Push element x onto stack. */
+    public void push(int x) {
+        queue.addFirst(x);
+    }
+
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        return queue.pop();
+    }
+
+    /** Get the top element. */
+    public int top() {
+        return queue.getFirst();
+    }
+
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}
+
 
 class ListNode {
     int val;
@@ -1322,3 +1436,4 @@ class TreeNode {
         this.right = right;
     }
 }
+
