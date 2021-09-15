@@ -9,18 +9,16 @@ public class Main {
 
         Solution solution = new Solution();
 
-//        ListNode list1 = new ListNode(1);
-//        ListNode list2 = new ListNode(2);
-//        list1.next = list2;
+        ListNode list1 = new ListNode(1);
+        ListNode list2 = new ListNode(2);
+        list1.next = list2;
+        ListNode list3 = new ListNode(2);
+        list2.next = list3;
+        ListNode list4 = new ListNode(1);
+        list3.next = list4;
+        System.out.println(solution.isPalindrome(list1));
 
-        System.out.println(solution.containsNearbyDuplicate(new int[] {1,2,3,1}, 3));
 
-        MyStack myStack = new MyStack();
-        myStack.push(1);
-        myStack.push(2);
-        System.out.println(myStack.top());
-        System.out.println(myStack.pop());
-        System.out.println(myStack.top());
 
     }
 

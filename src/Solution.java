@@ -1383,6 +1383,99 @@ public class Solution {
     }
     //endregion
 
+    //region 228. Summary Ranges
+    public List<String> summaryRanges(int[] nums) {
+
+        List<String> list = new ArrayList<>();
+
+        if (nums.length == 0) {
+            return list;
+        }
+
+        int current = nums[0];
+        int next = nums[0];
+
+        int s1 = current;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            current = nums[i];
+            if (i < nums.length-1) {
+                next = nums[i+1];
+            }
+
+            if ((current+1) != next) {
+                String s;
+                if (s1 == current) {
+                    s = Integer.toString(s1);
+                } else {
+                    s = Integer.toString(s1) + "->" + Integer.toString(current);
+                }
+                list.add(s);
+                current = next;
+                s1 = next;
+            }
+
+        }
+
+        return list;
+
+    }
+    //endregion
+
+    //region 231. Power of Two
+    public boolean isPowerOfTwo(int n) {
+
+        if (n<=0) {return false;}
+        if (n==1) {return true;}
+
+        if (n%2!=0) {
+            return false;
+        }
+
+        while (n>2) {
+            int tmp = n/2;
+            if (tmp%2!=0) {
+                return false;
+            }
+            n = tmp;
+        }
+
+        return true;
+
+    }
+    //endregion
+
+    //region 234. Palindrome Linked List
+    public boolean isPalindrome(ListNode head) {
+
+        List<Integer> vals = new ArrayList<>();
+
+        // Convert LinkedList into ArrayList.
+        ListNode currentNode = head;
+        while (currentNode != null) {
+            vals.add(currentNode.val);
+            currentNode = currentNode.next;
+        }
+
+        // Use two-pointer technique to check for palindrome.
+        int front = 0;
+        int back = vals.size() - 1;
+        while (front < back) {
+            // Note that we must use ! .equals instead of !=
+            // because we are comparing Integer, not int.
+            if (!vals.get(front).equals(vals.get(back))) {
+                return false;
+            }
+            front++;
+            back--;
+        }
+        return true;
+    }
+
+
+    //endregion
+
 }
 
 class MyStack {
