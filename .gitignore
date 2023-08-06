@@ -15,3 +15,8 @@ bin
 *.log
 /app/database.mv.db
 /app/database.trace.db
+
+out/
+
+leetcode.iml
+
