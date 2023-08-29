@@ -12,7 +12,7 @@ public class _53 {
             sum += nums[i];
             max = Math.max(max, sum);
             if (sum < 0) {
-                sum = 0;
+                sum = nums[i];
             }
         }
 
